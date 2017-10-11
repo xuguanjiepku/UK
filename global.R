@@ -5,16 +5,17 @@ library(lubridate)
 library(leaflet)
 library(maps)
 library(data.table)
-setwd("/Users/Strider/Shiny_Project/ShinyProj_Guanjie/UK_traffic_and_accidents_10years/")
-
 
 #load the three csvs have the accidents record in UK from 2005 to 2014 without 2008.
-raw_df <-  fread('accident.csv', stringsAsFactors = FALSE, header = TRUE)
+#raw_df <-  fread('accident.csv', stringsAsFactors = FALSE, header = TRUE)
 #UK_ct = fread('england_ct_2011.csv', header = TRUE, stringsAsFactors = FALSE) #load the UK counties
-district_code <-  fread('infuse_dist_lyr_2011.csv', stringsAsFactors = FALSE, header = TRUE)
-citis_uk <-  fread('Local_Administrative.csv', stringsAsFactors = FALSE, header = TRUE) #this csv has the Long and lat for each city
-citis_uk = citis_uk %>% select(Authority = lau118cd, Long0=long, Lat0=lat)
+#district_code <-  fread('infuse_dist_lyr_2011.csv', stringsAsFactors = FALSE, header = TRUE)
+#citis_uk <-  fread('Local_Administrative.csv', stringsAsFactors = FALSE, header = TRUE) #this csv has the Long and lat for each city
 
+load("raw_df.rda")
+load("district_code.rda")
+load("citis_uk.rda")
+citis_uk = citis_uk %>% select(Authority = lau118cd, Long0=long, Lat0=lat)
 #combine these three date frames into one. They have exactly column names and column numbers. Create df_accd.
 #raw_df <- rbind(rbind(raw_df_ac_part1, raw_df_ac_part2), raw_df_ac_part3)
 #accd_df <- as.data.frame(raw_df)
